@@ -1,7 +1,6 @@
-import express from "express";
-// const nodemailer = require("nodemailer");
-import nodemailer from "nodemailer";
-import cors from "cors";
+const express = require("express");
+const nodemailer = require("nodemailer");
+const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
