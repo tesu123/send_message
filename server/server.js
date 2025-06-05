@@ -15,8 +15,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-app.post("/", async (req, res) => {
-  res.send("Server is running fine!!!");
+app.get("/", (req, res) => {
+  res.send("Server is running fine !!!");
 });
 
 app.post("/send-email", async (req, res) => {
