@@ -5,17 +5,28 @@ require("dotenv").config();
 
 const app = express();
 
-// Replace with this CORS configuration
-app.use(cors({
-  origin: [
-    process.env.CORS_ORIGIN, 
-    "https://send-message-frontend-rho.vercel.app"
-  ],
-  methods: ["GET", "POST"],
-  credentials: true
-}));
+// app.use(
+//   cors({
+//     origin: process.env.CORS_ORIGIN,
+//     credentials: true,
+//   })
+// );
+app.use(cors());
 
-app.use(express.json());
+app.use(
+  express.json({
+    limit: "16kb",
+  })
+);
+
+app.use(
+  express.urlencoded({
+    extended: true,
+    limit: "16kb",
+  })
+);
+
+app.use(express.static("public"));
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -55,7 +66,7 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
 );
