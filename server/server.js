@@ -5,13 +5,15 @@ require("dotenv").config();
 
 const app = express();
 
-// app.use(
-//   cors({
-//     origin: process.env.CORS_ORIGIN,
-//     credentials: true,
-//   })
-// );
-app.use(cors());
+// Replace with this CORS configuration
+app.use(cors({
+  origin: [
+    process.env.CORS_ORIGIN, 
+    "https://send-message-frontend-rho.vercel.app"
+  ],
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 
 app.use(express.json());
 
